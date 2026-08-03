@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daily Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1F1C;
+    --ink-soft:#2A2E29;
+    --sand:#F7F3EC;
+    --sand-dim:#EFE9DD;
+    --brass:#B9925A;
+    --brass-dark:#92703F;
+    --sage:#7C9473;
+    --coral:#C1614D;
+    --line: rgba(28,31,28,0.10);
+    --shadow: 0 1px 2px rgba(28,31,28,0.06), 0 8px 24px rgba(28,31,28,0.06);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding: 0 0 60px 0;
+  }
+  .page{
+    width:100%;
+    max-width:480px;
+    background:var(--ink);
+    min-height:100vh;
+  }
+
+  /* Header */
+  .header{
+    padding: 28px 22px 22px 22px;
+    color: var(--sand);
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color: rgba(247,243,236,0.55);
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .eyebrow .date-main{ color: rgba(247,243,236,0.85); font-weight:600; letter-spacing:0.08em;}
+
+  .profile{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .avatar{
+    width:56px;height:56px;border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--brass);
+    flex-shrink:0;
+    background: var(--ink-soft);
+  }
+  .who .greet{
+    font-family:'Fraunces', serif;
+    font-size:23px;
+    font-weight:500;
+    line-height:1.15;
+  }
+  .who .title{
+    font-size:13px;
+    color: rgba(247,243,236,0.6);
+    margin-top:3px;
+    letter-spacing:0.01em;
+  }
+
+  /* Punch card progress strip — signature element */
+  .punchcard{
+    margin: 22px 22px 0 22px;
+    background: var(--ink-soft);
+    border-radius: 14px;
+    padding: 16px 16px 14px 16px;
+  }
+  .punchcard-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:12px;
+  }
+  .punchcard-label{
+    color: rgba(247,243,236,0.55);
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  .punchcard-count{
+    color: var(--sand);
+    font-family:'Fraunces', serif;
+    font-size:15px;
+  }
+  .punchcard-count strong{ color: var(--brass); font-weight:600; }
+  .ticks{
+    display:flex;
+    gap:6px;
+  }
+  .tick{
+    height:8px;
+    flex:1;
+    border-radius:3px;
+    background: rgba(247,243,236,0.14);
+    transition: background 0.35s ease;
+  }
+  .tick.filled{ background: var(--brass); }
+
+  /* Content card */
+  .card{
+    background: var(--sand);
+    border-radius: 20px 20px 0 0;
+    margin-top: 22px;
+    padding: 22px 20px 10px 20px;
+    min-height: 40vh;
+  }
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:500;
+    margin: 0 0 4px 2px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .section-sub{
+    font-size:12.5px;
+    color: rgba(28,31,28,0.5);
+    margin: 0 2px 14px 2px;
+  }
+
+  .task{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--line);
+    cursor:pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select:none;
+  }
+  .task:last-child{ border-bottom:none; }
+
+  .box{
+    width:26px;height:26px;
+    border-radius:8px;
+    border:2px solid rgba(28,31,28,0.25);
+    background: #fff;
+    flex-shrink:0;
+    margin-top:1px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.18s ease;
+  }
+  .box svg{
+    width:14px;height:14px;
+    opacity:0;
+    transform: scale(0.5);
+    transition: all 0.18s ease;
+  }
+  .task.done .box{
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .task.done .box svg{ opacity:1; transform:scale(1); }
+
+  .task-text{
+    flex:1;
+    padding-top:2px;
+  }
+  .task-name{
+    font-size:15px;
+    font-weight:500;
+    color: var(--ink);
+    line-height:1.35;
+    transition: color 0.18s ease, opacity 0.18s ease;
+  }
+  .task.done .task-name{
+    color: rgba(28,31,28,0.4);
+    text-decoration: line-through;
+    text-decoration-color: rgba(28,31,28,0.25);
+  }
+  .task-tag{
+    display:inline-block;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color: var(--brass-dark);
+    background: rgba(185,146,90,0.14);
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-top:5px;
+  }
+  .task-tag.weekly{
+    color:#5A6E8C;
+    background: rgba(90,110,140,0.12);
+  }
+
+  .empty-state{
+    text-align:center;
+    padding: 40px 20px;
+    color: rgba(28,31,28,0.45);
+    font-size:14px;
+  }
+
+  .footer-note{
+    text-align:center;
+    font-size:12px;
+    color: rgba(28,31,28,0.4);
+    padding: 18px 20px 4px 20px;
+  }
+
+  .celebrate{
+    display:none;
+    text-align:center;
+    padding: 28px 20px 20px 20px;
+  }
+  .celebrate.show{ display:block; }
+  .celebrate .big{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    color: var(--ink);
+    margin-bottom:4px;
+  }
+  .celebrate .small{
+    font-size:13px;
+    color: rgba(28,31,28,0.5);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page" id="page">
+
+  <div class="header">
+    <div class="eyebrow">
+      <span class="date-main" id="dateLabel">Monday, August 3</span>
+      <span id="timeContext">Morning</span>
+    </div>
+    <div class="profile">
+      <img class="avatar" id="avatarImg" src="" alt="">
+      <div class="who">
+        <div class="greet" id="greetName">Hi, Maria</div>
+        <div class="title" id="titleLabel">Resort Manager</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="punchcard">
+    <div class="punchcard-top">
+      <span class="punchcard-label">Today's progress</span>
+      <span class="punchcard-count"><strong id="doneCount">0</strong><span style="color:rgba(247,243,236,0.4)"> / </span><span id="totalCount">0</span></span>
+    </div>
+    <div class="ticks" id="ticks"></div>
+  </div>
+
+  <div class="card">
+    <div id="taskListWrap">
+      <div class="section-title">Today's Tasks</div>
+      <div class="section-sub" id="sectionSub">Daily routine + Monday SOPs</div>
+      <div id="taskList"></div>
+    </div>
+
+    <div class="celebrate" id="celebrate">
+      <div class="big">All done for today ✓</div>
+      <div class="small">Nice work — see you tomorrow.</div>
+    </div>
+
+    <div class="footer-note">Checks are saved automatically · resets each morning</div>
+  </div>
+
+</div>
+
+<script>
+  // ---------------------------------------------------------------
+  // SAMPLE DATA — this whole block will later be replaced by a
+  // fetch() call to a Google Sheet / Apps Script endpoint that
+  // returns the employee profile + today's task list.
+  // ---------------------------------------------------------------
+
+  // Get employee id from URL, e.g. page.html?id=maria
+  const params = new URLSearchParams(window.location.search);
+  const employeeId = params.get('id') || 'maria';
+
+  const EMPLOYEES = {
+    maria: {
+      name: "Maria Alvarez",
+      title: "Resort Manager",
+      photo: "https://i.pravatar.cc/150?img=47"
+    },
+    james: {
+      name: "James Okoro",
+      title: "Front Desk Supervisor",
+      photo: "https://i.pravatar.cc/150?img=12"
+    }
+  };
+
+  // Daily tasks (every day) + weekday-specific tasks (SOPs, etc)
+  const DAILY_TASKS = [
+    "Walk the lobby and check for cleanliness",
+    "Confirm all staff have clocked in",
+    "Review today's arrivals and VIP notes",
+    "Check pool and garden area upkeep",
+    "Radio check with front desk and housekeeping"
+  ];
+
+  const WEEKLY_TASKS = {
+    1: ["Submit weekly occupancy report", "Walk-through of maintenance backlog"], // Monday
+    2: [],
+    3: ["Mid-week inventory spot check"],
+    4: [],
+    5: ["Prep weekend staffing schedule"],
+    6: ["Weekend readiness walk-through"],
+    0: ["Review guest feedback from the week"]
+  };
+
+  // ---------------------------------------------------------------
+  // Rendering logic
+  // ---------------------------------------------------------------
+
+  const employee = EMPLOYEES[employeeId] || EMPLOYEES.maria;
+  const today = new Date();
+  const dayIdx = today.getDay(); // 0 = Sunday
+  const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  document.getElementById('dateLabel').textContent =
+    `${dayNames[dayIdx]}, ${monthNames[today.getMonth()]} ${today.getDate()}`;
+
+  const hour = today.getHours();
+  document.getElementById('timeContext').textContent =
+    hour < 12 ? "Morning" : hour < 17 ? "Afternoon" : "Evening";
+
+  document.getElementById('avatarImg').src = employee.photo;
+  document.getElementById('avatarImg').alt = employee.name;
+  document.getElementById('greetName').textContent = `Hi, ${employee.name.split(' ')[0]}`;
+  document.getElementById('titleLabel').textContent = employee.title;
+
+  const weeklyForToday = WEEKLY_TASKS[dayIdx] || [];
+  document.getElementById('sectionSub').textContent =
+    weeklyForToday.length
+      ? `Daily routine + ${dayNames[dayIdx]} SOPs`
+      : `Daily routine`;
+
+  // Build task objects with stable IDs (id + date = storage key)
+  const allTasks = [
+    ...DAILY_TASKS.map((t, i) => ({ id: `d${i}`, text: t, type: 'daily' })),
+    ...weeklyForToday.map((t, i) => ({ id: `w${i}`, text: t, type: 'weekly' }))
+  ];
+
+  // Local storage key scoped to employee + date (placeholder for Sheet sync)
+  const dateKey = today.toISOString().slice(0,10);
+  const storageKey = `checklist_${employeeId}_${dateKey}`;
+
+  function loadState(){
+    try {
+      return JSON.parse(localStorage.getItem(storageKey)) || {};
+    } catch(e){ return {}; }
+  }
+  function saveState(state){
+    localStorage.setItem(storageKey, JSON.stringify(state));
+    // ---------------------------------------------------------------
+    // TODO: replace/augment with a POST to Google Apps Script, e.g.
+    // fetch(SHEET_ENDPOINT, { method:'POST', body: JSON.stringify({
+    //   employeeId, date: dateKey, taskId, checked
+    // })});
+    // ---------------------------------------------------------------
+  }
+
+  let state = loadState();
+
+  const listEl = document.getElementById('taskList');
+  const ticksEl = document.getElementById('ticks');
+
+  function render(){
+    listEl.innerHTML = '';
+    ticksEl.innerHTML = '';
+
+    allTasks.forEach(task => {
+      const done = !!state[task.id];
+
+      const row = document.createElement('div');
+      row.className = 'task' + (done ? ' done' : '');
+      row.innerHTML = `
+        <div class="box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="task-text">
+          <div class="task-name">${task.text}</div>
+          <span class="task-tag ${task.type === 'weekly' ? 'weekly' : ''}">${task.type === 'weekly' ? dayNames[dayIdx] + ' SOP' : 'Daily'}</span>
+        </div>
+      `;
+      row.addEventListener('click', () => {
+        state[task.id] = !state[task.id];
+        saveState(state);
+        render();
+      });
+      listEl.appendChild(row);
+
+      const tick = document.createElement('div');
+      tick.className = 'tick' + (done ? ' filled' : '');
+      ticksEl.appendChild(tick);
+    });
+
+    const doneCount = allTasks.filter(t => state[t.id]).length;
+    document.getElementById('doneCount').textContent = doneCount;
+    document.getElementById('totalCount').textContent = allTasks.length;
+
+    const wrap = document.getElementById('taskListWrap');
+    const celebrate = document.getElementById('celebrate');
+    if (allTasks.length > 0 && doneCount === allTasks.length){
+      wrap.style.display = 'none';
+      celebrate.classList.add('show');
+    } else {
+      wrap.style.display = 'block';
+      celebrate.classList.remove('show');
+    }
+  }
+
+  render();
+</script>
+</body>
+</html>
