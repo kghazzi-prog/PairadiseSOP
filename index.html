@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Checklist</title>
+<title>Pairadise Resort — Daily Checklist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1C1F1C;
-    --ink-soft:#2A2E29;
-    --sand:#F7F3EC;
-    --sand-dim:#EFE9DD;
-    --brass:#B9925A;
-    --brass-dark:#92703F;
-    --sage:#7C9473;
-    --coral:#C1614D;
-    --line: rgba(28,31,28,0.10);
-    --shadow: 0 1px 2px rgba(28,31,28,0.06), 0 8px 24px rgba(28,31,28,0.06);
+    --ink:#0F2A24;
+    --ink-soft:#173A32;
+    --sand:#FBF8F2;
+    --sand-dim:#F1ECE0;
+    --teal:#1EA672;
+    --teal-dark:#0B5C42;
+    --navy:#1B2350;
+    --coral:#E8536B;
+    --gold:#F0A93E;
+    --line: rgba(15,42,36,0.10);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -39,32 +39,65 @@
 
   /* Header */
   .header{
-    padding: 28px 22px 22px 22px;
+    padding: 24px 22px 20px 22px;
     color: var(--sand);
   }
+  .brandrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .brandrow img{
+    width:34px;height:34px;
+    object-fit:contain;
+    filter: drop-shadow(0 0 6px rgba(30,166,114,0.25));
+  }
+  .brandrow .brandname{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    letter-spacing:0.02em;
+    color: rgba(251,248,242,0.92);
+  }
+  .brandrow .brandname span{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-size:9.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color: rgba(251,248,242,0.45);
+    margin-top:1px;
+  }
+
   .eyebrow{
     font-size:12px;
     letter-spacing:0.14em;
     text-transform:uppercase;
-    color: rgba(247,243,236,0.55);
+    color: rgba(251,248,242,0.5);
     margin-bottom:14px;
     display:flex;
     justify-content:space-between;
     align-items:center;
   }
-  .eyebrow .date-main{ color: rgba(247,243,236,0.85); font-weight:600; letter-spacing:0.08em;}
+  .eyebrow .date-main{ color: rgba(251,248,242,0.85); font-weight:600; letter-spacing:0.08em;}
 
   .profile{
     display:flex;
     align-items:center;
     gap:14px;
   }
-  .avatar{
+  .avatar-placeholder{
     width:56px;height:56px;border-radius:50%;
-    object-fit:cover;
-    border:2px solid var(--brass);
     flex-shrink:0;
     background: var(--ink-soft);
+    border:2px dashed rgba(30,166,114,0.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .avatar-placeholder svg{
+    width:26px;height:26px;
+    opacity:0.6;
   }
   .who .greet{
     font-family:'Fraunces', serif;
@@ -74,14 +107,14 @@
   }
   .who .title{
     font-size:13px;
-    color: rgba(247,243,236,0.6);
+    color: rgba(251,248,242,0.6);
     margin-top:3px;
     letter-spacing:0.01em;
   }
 
-  /* Punch card progress strip — signature element */
+  /* Punch card progress strip */
   .punchcard{
-    margin: 22px 22px 0 22px;
+    margin: 20px 22px 0 22px;
     background: var(--ink-soft);
     border-radius: 14px;
     padding: 16px 16px 14px 16px;
@@ -93,7 +126,7 @@
     margin-bottom:12px;
   }
   .punchcard-label{
-    color: rgba(247,243,236,0.55);
+    color: rgba(251,248,242,0.5);
     font-size:11px;
     letter-spacing:0.12em;
     text-transform:uppercase;
@@ -103,7 +136,7 @@
     font-family:'Fraunces', serif;
     font-size:15px;
   }
-  .punchcard-count strong{ color: var(--brass); font-weight:600; }
+  .punchcard-count strong{ color: var(--gold); font-weight:600; }
   .ticks{
     display:flex;
     gap:6px;
@@ -112,17 +145,17 @@
     height:8px;
     flex:1;
     border-radius:3px;
-    background: rgba(247,243,236,0.14);
+    background: rgba(251,248,242,0.14);
     transition: background 0.35s ease;
   }
-  .tick.filled{ background: var(--brass); }
+  .tick.filled{ background: linear-gradient(90deg, var(--teal), var(--gold)); }
 
   /* Content card */
   .card{
     background: var(--sand);
     border-radius: 20px 20px 0 0;
-    margin-top: 22px;
-    padding: 22px 20px 10px 20px;
+    margin-top: 20px;
+    padding: 22px 20px 18px 20px;
     min-height: 40vh;
   }
   .section-title{
@@ -130,13 +163,10 @@
     font-size:17px;
     font-weight:500;
     margin: 0 0 4px 2px;
-    display:flex;
-    align-items:center;
-    gap:8px;
   }
   .section-sub{
     font-size:12.5px;
-    color: rgba(28,31,28,0.5);
+    color: rgba(15,42,36,0.5);
     margin: 0 2px 14px 2px;
   }
 
@@ -155,7 +185,7 @@
   .box{
     width:26px;height:26px;
     border-radius:8px;
-    border:2px solid rgba(28,31,28,0.25);
+    border:2px solid rgba(15,42,36,0.22);
     background: #fff;
     flex-shrink:0;
     margin-top:1px;
@@ -171,73 +201,122 @@
     transition: all 0.18s ease;
   }
   .task.done .box{
-    background: var(--sage);
-    border-color: var(--sage);
+    background: var(--teal);
+    border-color: var(--teal);
   }
   .task.done .box svg{ opacity:1; transform:scale(1); }
 
-  .task-text{
-    flex:1;
-    padding-top:2px;
-  }
+  .task-text{ flex:1; padding-top:2px; }
   .task-name{
     font-size:15px;
     font-weight:500;
     color: var(--ink);
     line-height:1.35;
-    transition: color 0.18s ease, opacity 0.18s ease;
+    transition: color 0.18s ease;
   }
   .task.done .task-name{
-    color: rgba(28,31,28,0.4);
+    color: rgba(15,42,36,0.4);
     text-decoration: line-through;
-    text-decoration-color: rgba(28,31,28,0.25);
+    text-decoration-color: rgba(15,42,36,0.25);
   }
   .task-tag{
     display:inline-block;
     font-size:10.5px;
     letter-spacing:0.06em;
     text-transform:uppercase;
-    color: var(--brass-dark);
-    background: rgba(185,146,90,0.14);
+    color: var(--teal-dark);
+    background: rgba(30,166,114,0.14);
     padding: 2px 7px;
     border-radius: 5px;
     margin-top:5px;
   }
   .task-tag.weekly{
-    color:#5A6E8C;
-    background: rgba(90,110,140,0.12);
+    color:#A8461C;
+    background: rgba(240,169,62,0.18);
   }
 
-  .empty-state{
+  .submit-wrap{
+    padding: 18px 4px 4px 4px;
+  }
+  .submit-btn{
+    width:100%;
+    border:none;
+    border-radius: 12px;
+    padding: 15px;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    background: var(--ink);
+    color: var(--sand);
+    transition: transform 0.12s ease, opacity 0.2s ease;
+  }
+  .submit-btn:disabled{
+    opacity:0.35;
+    cursor:not-allowed;
+  }
+  .submit-btn:not(:disabled):active{ transform: scale(0.98); }
+  .submit-hint{
     text-align:center;
-    padding: 40px 20px;
-    color: rgba(28,31,28,0.45);
-    font-size:14px;
+    font-size:12px;
+    color: rgba(15,42,36,0.4);
+    margin-top:10px;
   }
 
   .footer-note{
     text-align:center;
     font-size:12px;
-    color: rgba(28,31,28,0.4);
-    padding: 18px 20px 4px 20px;
+    color: rgba(15,42,36,0.4);
+    padding: 10px 20px 4px 20px;
   }
 
+  /* Well done screen */
   .celebrate{
     display:none;
     text-align:center;
-    padding: 28px 20px 20px 20px;
+    padding: 50px 20px 10px 20px;
   }
   .celebrate.show{ display:block; }
+  .celebrate .mark{
+    width:64px;height:64px;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--teal), var(--gold));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 0 auto 18px auto;
+  }
+  .celebrate .mark svg{ width:30px;height:30px; }
   .celebrate .big{
     font-family:'Fraunces', serif;
-    font-size:20px;
+    font-size:21px;
     color: var(--ink);
-    margin-bottom:4px;
+    margin-bottom:6px;
   }
   .celebrate .small{
-    font-size:13px;
-    color: rgba(28,31,28,0.5);
+    font-size:13.5px;
+    color: rgba(15,42,36,0.5);
+    line-height:1.5;
+    max-width:280px;
+    margin: 0 auto;
   }
+  .back-btn{
+    margin: 26px auto 0 auto;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    justify-content:center;
+    background:none;
+    border:1px solid rgba(15,42,36,0.18);
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color: var(--ink);
+    cursor:pointer;
+  }
+  .back-btn svg{ width:14px;height:14px; }
 
   @media (prefers-reduced-motion: reduce){
     *{ transition: none !important; }
@@ -248,15 +327,21 @@
 <div class="page" id="page">
 
   <div class="header">
+    <div class="brandrow">
+      <img src="logo.png" alt="Pairadise Resort">
+      <div class="brandname">Pairadise Resort<span>Daily Ops Checklist</span></div>
+    </div>
     <div class="eyebrow">
       <span class="date-main" id="dateLabel">Monday, August 3</span>
       <span id="timeContext">Morning</span>
     </div>
     <div class="profile">
-      <img class="avatar" id="avatarImg" src="" alt="">
+      <div class="avatar-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FBF8F2" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+      </div>
       <div class="who">
-        <div class="greet" id="greetName">Hi, Maria</div>
-        <div class="title" id="titleLabel">Resort Manager</div>
+        <div class="greet" id="greetName">Hi, Nong</div>
+        <div class="title" id="titleLabel">General Manager</div>
       </div>
     </div>
   </div>
@@ -264,7 +349,7 @@
   <div class="punchcard">
     <div class="punchcard-top">
       <span class="punchcard-label">Today's progress</span>
-      <span class="punchcard-count"><strong id="doneCount">0</strong><span style="color:rgba(247,243,236,0.4)"> / </span><span id="totalCount">0</span></span>
+      <span class="punchcard-count"><strong id="doneCount">0</strong><span style="color:rgba(251,248,242,0.4)"> / </span><span id="totalCount">0</span></span>
     </div>
     <div class="ticks" id="ticks"></div>
   </div>
@@ -274,11 +359,23 @@
       <div class="section-title">Today's Tasks</div>
       <div class="section-sub" id="sectionSub">Daily routine + Monday SOPs</div>
       <div id="taskList"></div>
+
+      <div class="submit-wrap">
+        <button class="submit-btn" id="submitBtn" disabled>Submit today's checklist</button>
+        <div class="submit-hint" id="submitHint">Check off every task to submit</div>
+      </div>
     </div>
 
     <div class="celebrate" id="celebrate">
-      <div class="big">All done for today ✓</div>
-      <div class="small">Nice work — see you tomorrow.</div>
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <div class="big">Well done, Nong</div>
+      <div class="small">Today's checklist has been submitted. See you tomorrow for a fresh list.</div>
+      <button class="back-btn" id="backBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to checklist
+      </button>
     </div>
 
     <div class="footer-note">Checks are saved automatically · resets each morning</div>
@@ -288,29 +385,17 @@
 
 <script>
   // ---------------------------------------------------------------
-  // SAMPLE DATA — this whole block will later be replaced by a
-  // fetch() call to a Google Sheet / Apps Script endpoint that
-  // returns the employee profile + today's task list.
+  // SAMPLE DATA — to be replaced by a fetch() to Google Sheets later
   // ---------------------------------------------------------------
 
-  // Get employee id from URL, e.g. page.html?id=maria
   const params = new URLSearchParams(window.location.search);
-  const employeeId = params.get('id') || 'maria';
+  const employeeId = params.get('id') || 'nong';
 
   const EMPLOYEES = {
-    maria: {
-      name: "Maria Alvarez",
-      title: "Resort Manager",
-      photo: "https://i.pravatar.cc/150?img=47"
-    },
-    james: {
-      name: "James Okoro",
-      title: "Front Desk Supervisor",
-      photo: "https://i.pravatar.cc/150?img=12"
-    }
+    nong: { name: "Nong", title: "General Manager" },
+    james: { name: "James Okoro", title: "Front Desk Supervisor" }
   };
 
-  // Daily tasks (every day) + weekday-specific tasks (SOPs, etc)
   const DAILY_TASKS = [
     "Walk the lobby and check for cleanliness",
     "Confirm all staff have clocked in",
@@ -320,7 +405,7 @@
   ];
 
   const WEEKLY_TASKS = {
-    1: ["Submit weekly occupancy report", "Walk-through of maintenance backlog"], // Monday
+    1: ["Submit weekly occupancy report", "Walk-through of maintenance backlog"],
     2: [],
     3: ["Mid-week inventory spot check"],
     4: [],
@@ -329,13 +414,9 @@
     0: ["Review guest feedback from the week"]
   };
 
-  // ---------------------------------------------------------------
-  // Rendering logic
-  // ---------------------------------------------------------------
-
-  const employee = EMPLOYEES[employeeId] || EMPLOYEES.maria;
+  const employee = EMPLOYEES[employeeId] || EMPLOYEES.nong;
   const today = new Date();
-  const dayIdx = today.getDay(); // 0 = Sunday
+  const dayIdx = today.getDay();
   const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -346,46 +427,50 @@
   document.getElementById('timeContext').textContent =
     hour < 12 ? "Morning" : hour < 17 ? "Afternoon" : "Evening";
 
-  document.getElementById('avatarImg').src = employee.photo;
-  document.getElementById('avatarImg').alt = employee.name;
   document.getElementById('greetName').textContent = `Hi, ${employee.name.split(' ')[0]}`;
   document.getElementById('titleLabel').textContent = employee.title;
+  document.querySelector('.celebrate .big').textContent = `Well done, ${employee.name.split(' ')[0]}`;
 
   const weeklyForToday = WEEKLY_TASKS[dayIdx] || [];
   document.getElementById('sectionSub').textContent =
-    weeklyForToday.length
-      ? `Daily routine + ${dayNames[dayIdx]} SOPs`
-      : `Daily routine`;
+    weeklyForToday.length ? `Daily routine + ${dayNames[dayIdx]} SOPs` : `Daily routine`;
 
-  // Build task objects with stable IDs (id + date = storage key)
   const allTasks = [
     ...DAILY_TASKS.map((t, i) => ({ id: `d${i}`, text: t, type: 'daily' })),
     ...weeklyForToday.map((t, i) => ({ id: `w${i}`, text: t, type: 'weekly' }))
   ];
 
-  // Local storage key scoped to employee + date (placeholder for Sheet sync)
   const dateKey = today.toISOString().slice(0,10);
   const storageKey = `checklist_${employeeId}_${dateKey}`;
+  const submitKey = `submitted_${employeeId}_${dateKey}`;
 
   function loadState(){
-    try {
-      return JSON.parse(localStorage.getItem(storageKey)) || {};
-    } catch(e){ return {}; }
+    try { return JSON.parse(localStorage.getItem(storageKey)) || {}; }
+    catch(e){ return {}; }
   }
   function saveState(state){
     localStorage.setItem(storageKey, JSON.stringify(state));
-    // ---------------------------------------------------------------
-    // TODO: replace/augment with a POST to Google Apps Script, e.g.
-    // fetch(SHEET_ENDPOINT, { method:'POST', body: JSON.stringify({
-    //   employeeId, date: dateKey, taskId, checked
-    // })});
-    // ---------------------------------------------------------------
+    // TODO: POST to Google Apps Script endpoint here too
   }
 
   let state = loadState();
+  let submitted = localStorage.getItem(submitKey) === 'true';
 
   const listEl = document.getElementById('taskList');
   const ticksEl = document.getElementById('ticks');
+  const submitBtn = document.getElementById('submitBtn');
+  const submitHint = document.getElementById('submitHint');
+  const wrap = document.getElementById('taskListWrap');
+  const celebrate = document.getElementById('celebrate');
+
+  function showCelebrate(){
+    wrap.style.display = 'none';
+    celebrate.classList.add('show');
+  }
+  function showList(){
+    wrap.style.display = 'block';
+    celebrate.classList.remove('show');
+  }
 
   function render(){
     listEl.innerHTML = '';
@@ -393,7 +478,6 @@
 
     allTasks.forEach(task => {
       const done = !!state[task.id];
-
       const row = document.createElement('div');
       row.className = 'task' + (done ? ' done' : '');
       row.innerHTML = `
@@ -423,16 +507,28 @@
     document.getElementById('doneCount').textContent = doneCount;
     document.getElementById('totalCount').textContent = allTasks.length;
 
-    const wrap = document.getElementById('taskListWrap');
-    const celebrate = document.getElementById('celebrate');
-    if (allTasks.length > 0 && doneCount === allTasks.length){
-      wrap.style.display = 'none';
-      celebrate.classList.add('show');
+    const allDone = allTasks.length > 0 && doneCount === allTasks.length;
+    submitBtn.disabled = !allDone;
+    submitHint.textContent = allDone ? "Ready to submit" : "Check off every task to submit";
+
+    if (submitted){
+      showCelebrate();
     } else {
-      wrap.style.display = 'block';
-      celebrate.classList.remove('show');
+      showList();
     }
   }
+
+  submitBtn.addEventListener('click', () => {
+    if (submitBtn.disabled) return;
+    submitted = true;
+    localStorage.setItem(submitKey, 'true');
+    // TODO: POST final submission to Google Apps Script endpoint here
+    showCelebrate();
+  });
+
+  document.getElementById('backBtn').addEventListener('click', () => {
+    showList();
+  });
 
   render();
 </script>
