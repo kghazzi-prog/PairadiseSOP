@@ -141,6 +141,9 @@
     display:flex;
     gap:6px;
   }
+  .ticks.ticks-14{
+    gap:4px;
+  }
   .tick{
     height:8px;
     flex:1;
@@ -149,6 +152,7 @@
     transition: background 0.35s ease;
   }
   .tick.filled{ background: linear-gradient(90deg, var(--teal), var(--gold)); }
+  .tick.future{ background: rgba(251,248,242,0.06); }
 
   /* Content card */
   .card{
@@ -355,7 +359,7 @@
       </div>
       <div class="who">
         <div class="greet" id="greetName">Hi, Nong</div>
-        <div class="title" id="titleLabel">General Manager</div>
+        <div class="title" id="titleLabel">General Manager (from August 3 - August 18)</div>
       </div>
     </div>
   </div>
@@ -368,9 +372,18 @@
     <div class="ticks" id="ticks"></div>
   </div>
 
+  <div class="punchcard" style="margin-top:12px;">
+    <div class="punchcard-top">
+      <span class="punchcard-label">Two-week progress</span>
+      <span class="punchcard-count"><strong id="periodDoneCount">0</strong><span style="color:rgba(251,248,242,0.4)"> / </span><span id="periodTotalCount">0</span> days</span>
+    </div>
+    <div class="ticks ticks-14" id="periodTicks"></div>
+    <div class="submit-hint" style="text-align:left;margin-top:8px;color:rgba(251,248,242,0.4);" id="periodRangeLabel">Aug 3 – Aug 18</div>
+  </div>
+
   <div class="card">
     <div id="taskListWrap">
-      <div class="section-title">Today's Tasks</div>
+      <div class="section-title">Today's SOP Task checklist</div>
       <div class="section-sub" id="sectionSub">Daily routine + Monday SOPs</div>
       <div id="taskList"></div>
 
@@ -406,8 +419,8 @@
   const employeeId = params.get('id') || 'nong';
 
   const EMPLOYEES = {
-    nong: { name: "Nong", title: "General Manager" },
-    james: { name: "James Okoro", title: "Front Desk Supervisor" }
+    nong: { name: "Nong", title: "General Manager", periodStart: "2026-08-03", periodEnd: "2026-08-18" },
+    james: { name: "James Okoro", title: "Front Desk Supervisor", periodStart: "2026-08-03", periodEnd: "2026-08-18" }
   };
 
   const DAILY_TASKS = [
@@ -453,7 +466,15 @@
     hour < 12 ? "Morning" : hour < 17 ? "Afternoon" : "Evening";
 
   document.getElementById('greetName').textContent = `Hi, ${employee.name.split(' ')[0]}`;
-  document.getElementById('titleLabel').textContent = employee.title;
+
+  function fmtShort(dateStr){
+    const d = new Date(dateStr + 'T00:00:00');
+    return `${monthNames[d.getMonth()].slice(0,3)} ${d.getDate()}`;
+  }
+  document.getElementById('titleLabel').textContent =
+    `${employee.title} (from ${fmtShort(employee.periodStart)} - ${fmtShort(employee.periodEnd)})`;
+  document.getElementById('periodRangeLabel').textContent =
+    `${fmtShort(employee.periodStart)} – ${fmtShort(employee.periodEnd)}`;
   document.querySelector('.celebrate .big').textContent = `Well done, ${employee.name.split(' ')[0]}`;
 
   const weeklyForToday = WEEKLY_TASKS[dayIdx] || [];
@@ -542,6 +563,48 @@
     } else {
       showList();
     }
+
+    renderPeriodProgress();
+  }
+
+  function dateKeyFor(d){
+    return d.toISOString().slice(0,10);
+  }
+
+  function renderPeriodProgress(){
+    const start = new Date(employee.periodStart + 'T00:00:00');
+    const end = new Date(employee.periodEnd + 'T00:00:00');
+    const periodTicksEl = document.getElementById('periodTicks');
+    periodTicksEl.innerHTML = '';
+
+    let cursor = new Date(start);
+    let totalDays = 0;
+    let doneDays = 0;
+    const todayKey = dateKeyFor(today);
+
+    while (cursor <= end){
+      const cKey = dateKeyFor(cursor);
+      totalDays++;
+
+      const wasSubmitted = localStorage.getItem(`submitted_${employeeId}_${cKey}`) === 'true';
+      const isFuture = cKey > todayKey;
+
+      const tick = document.createElement('div');
+      if (wasSubmitted){
+        tick.className = 'tick filled';
+        doneDays++;
+      } else if (isFuture){
+        tick.className = 'tick future';
+      } else {
+        tick.className = 'tick';
+      }
+      periodTicksEl.appendChild(tick);
+
+      cursor.setDate(cursor.getDate() + 1);
+    }
+
+    document.getElementById('periodDoneCount').textContent = doneDays;
+    document.getElementById('periodTotalCount').textContent = totalDays;
   }
 
   submitBtn.addEventListener('click', () => {
