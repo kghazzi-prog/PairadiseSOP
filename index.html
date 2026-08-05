@@ -271,6 +271,8 @@
     const wrap = document.getElementById('taskListWrap');
     const celebrate = document.getElementById('celebrate');
 
+    let openSection = null; // accordion state — persists across re-renders
+
     function showCelebrate(){ wrap.style.display = 'none'; celebrate.classList.add('show'); }
     function showList(){ wrap.style.display = 'block'; celebrate.classList.remove('show'); }
 
@@ -294,7 +296,7 @@
         const complete = doneInSection === items.length;
 
         const secEl = document.createElement('div');
-        secEl.className = 'sop-section' + (sIdx === 0 ? ' open' : '');
+        secEl.className = 'sop-section' + (sectionName === openSection ? ' open' : '');
         secEl.innerHTML = `
           <div class="sop-section-head">
             <div class="sop-section-head-left">
@@ -308,7 +310,10 @@
           <div class="sop-section-body"></div>
         `;
         const head = secEl.querySelector('.sop-section-head');
-        head.addEventListener('click', () => secEl.classList.toggle('open'));
+        head.addEventListener('click', () => {
+          openSection = (openSection === sectionName) ? null : sectionName;
+          renderSections();
+        });
 
         const body = secEl.querySelector('.sop-section-body');
         items.forEach(task => {
