@@ -30,596 +30,377 @@
     justify-content:center;
     padding: 0 0 60px 0;
   }
-  .page{
-    width:100%;
-    max-width:480px;
-    background:var(--ink);
-    min-height:100vh;
+  .page{ width:100%; max-width:480px; background:var(--ink); min-height:100vh; }
+
+  /* Loading / error states */
+  .status-screen{
+    padding: 80px 24px;
+    text-align:center;
+    color: rgba(251,248,242,0.6);
+    font-size:14px;
   }
 
   /* Header */
-  .header{
-    padding: 24px 22px 20px 22px;
-    color: var(--sand);
-  }
-  .brandrow{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:20px;
-  }
-  .brandrow img{
-    width:34px;height:34px;
-    object-fit:contain;
-    filter: drop-shadow(0 0 6px rgba(30,166,114,0.25));
-  }
-  .brandrow .brandname{
-    font-family:'Fraunces', serif;
-    font-size:15px;
-    letter-spacing:0.02em;
-    color: rgba(251,248,242,0.92);
-  }
-  .brandrow .brandname span{
-    display:block;
-    font-family:'Inter',sans-serif;
-    font-size:9.5px;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    color: rgba(251,248,242,0.45);
-    margin-top:1px;
-  }
+  .header{ padding: 24px 22px 20px 22px; color: var(--sand); }
+  .brandrow{ display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+  .brandrow img{ width:34px;height:34px; object-fit:contain; filter: drop-shadow(0 0 6px rgba(30,166,114,0.25)); }
+  .brandrow .brandname{ font-family:'Fraunces', serif; font-size:15px; letter-spacing:0.02em; color: rgba(251,248,242,0.92); }
+  .brandrow .brandname span{ display:block; font-family:'Inter',sans-serif; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color: rgba(251,248,242,0.45); margin-top:1px; }
 
-  .eyebrow{
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color: rgba(251,248,242,0.5);
-    margin-bottom:14px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
+  .eyebrow{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color: rgba(251,248,242,0.5); margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; }
   .eyebrow .date-main{ color: rgba(251,248,242,0.85); font-weight:600; letter-spacing:0.08em;}
 
-  .profile{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  .avatar-placeholder{
-    width:56px;height:56px;border-radius:50%;
-    flex-shrink:0;
-    background: var(--ink-soft);
-    border:2px dashed rgba(30,166,114,0.55);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .avatar-placeholder svg{
-    width:26px;height:26px;
-    opacity:0.6;
-  }
-  .who .greet{
-    font-family:'Fraunces', serif;
-    font-size:23px;
-    font-weight:500;
-    line-height:1.15;
-  }
-  .who .title{
-    font-size:13px;
-    color: rgba(251,248,242,0.6);
-    margin-top:3px;
-    letter-spacing:0.01em;
-  }
+  .profile{ display:flex; align-items:center; gap:14px; }
+  .avatar-placeholder{ width:56px;height:56px;border-radius:50%; flex-shrink:0; background: var(--ink-soft); border:2px dashed rgba(30,166,114,0.55); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .avatar-placeholder img{ width:100%;height:100%;object-fit:cover; }
+  .avatar-placeholder svg{ width:26px;height:26px; opacity:0.6; }
+  .who .greet{ font-family:'Fraunces', serif; font-size:23px; font-weight:500; line-height:1.15; }
+  .who .title{ font-size:13px; color: rgba(251,248,242,0.6); margin-top:3px; letter-spacing:0.01em; }
 
-  /* Punch card progress strip */
-  .punchcard{
-    margin: 20px 22px 0 22px;
-    background: var(--ink-soft);
-    border-radius: 14px;
-    padding: 16px 16px 14px 16px;
-  }
-  .punchcard-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    margin-bottom:12px;
-  }
-  .punchcard-label{
-    color: rgba(251,248,242,0.5);
-    font-size:11px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-  }
-  .punchcard-count{
-    color: var(--sand);
-    font-family:'Fraunces', serif;
-    font-size:15px;
-  }
+  /* Punch card progress strips */
+  .punchcard{ margin: 20px 22px 0 22px; background: var(--ink-soft); border-radius: 14px; padding: 16px 16px 14px 16px; }
+  .punchcard-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
+  .punchcard-label{ color: rgba(251,248,242,0.5); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; }
+  .punchcard-count{ color: var(--sand); font-family:'Fraunces', serif; font-size:15px; }
   .punchcard-count strong{ color: var(--gold); font-weight:600; }
-  .ticks{
-    display:flex;
-    gap:6px;
-  }
-  .ticks.ticks-14{
-    gap:4px;
-  }
-  .tick{
-    height:8px;
-    flex:1;
-    border-radius:3px;
-    background: rgba(251,248,242,0.14);
-    transition: background 0.35s ease;
-  }
+  .ticks{ display:flex; gap:3px; flex-wrap:wrap; }
+  .ticks.ticks-14{ gap:4px; }
+  .tick{ height:8px; flex:1; min-width:3px; border-radius:3px; background: rgba(251,248,242,0.14); transition: background 0.35s ease; }
   .tick.filled{ background: linear-gradient(90deg, var(--teal), var(--gold)); }
   .tick.future{ background: rgba(251,248,242,0.06); }
 
   /* Content card */
-  .card{
-    background: var(--sand);
-    border-radius: 20px 20px 0 0;
-    margin-top: 20px;
-    padding: 22px 20px 18px 20px;
-    min-height: 40vh;
-  }
-  .section-title{
-    font-family:'Fraunces', serif;
-    font-size:17px;
-    font-weight:500;
-    margin: 0 0 4px 2px;
-  }
-  .section-sub{
-    font-size:12.5px;
-    color: rgba(15,42,36,0.5);
-    margin: 0 2px 14px 2px;
-  }
+  .card{ background: var(--sand); border-radius: 20px 20px 0 0; margin-top: 20px; padding: 22px 20px 18px 20px; min-height: 40vh; }
+  .section-title{ font-family:'Fraunces', serif; font-size:17px; font-weight:500; margin: 0 0 4px 2px; }
+  .section-sub{ font-size:12.5px; color: rgba(15,42,36,0.5); margin: 0 2px 16px 2px; }
 
-  .task{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    padding: 14px 4px;
-    border-bottom: 1px solid var(--line);
-    cursor:pointer;
-    -webkit-tap-highlight-color: transparent;
-    user-select:none;
-  }
+  /* Collapsible sections */
+  .sop-section{ margin-bottom:10px; border-radius:12px; overflow:hidden; background:#fff; border:1px solid var(--line); }
+  .sop-section-head{ display:flex; align-items:center; justify-content:space-between; padding:14px 14px; cursor:pointer; -webkit-tap-highlight-color: transparent; user-select:none; }
+  .sop-section-head-left{ display:flex; align-items:center; gap:10px; }
+  .sop-section-name{ font-family:'Fraunces', serif; font-size:15px; font-weight:500; }
+  .sop-section-count{ font-size:12px; color: rgba(15,42,36,0.45); font-weight:500; }
+  .sop-section-count.complete{ color: var(--teal-dark); }
+  .chevron{ width:18px;height:18px; transition: transform 0.2s ease; color: rgba(15,42,36,0.4); flex-shrink:0; }
+  .sop-section.open .chevron{ transform: rotate(180deg); }
+  .sop-section-body{ display:none; padding: 0 10px 8px 10px; }
+  .sop-section.open .sop-section-body{ display:block; }
+
+  .task{ display:flex; align-items:flex-start; gap:12px; padding: 12px 4px; border-bottom: 1px solid var(--line); cursor:pointer; -webkit-tap-highlight-color: transparent; user-select:none; }
   .task:last-child{ border-bottom:none; }
 
-  .box{
-    width:26px;height:26px;
-    border-radius:8px;
-    border:2px solid rgba(15,42,36,0.22);
-    background: #fff;
-    flex-shrink:0;
-    margin-top:1px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition: all 0.18s ease;
-  }
-  .box svg{
-    width:14px;height:14px;
-    opacity:0;
-    transform: scale(0.5);
-    transition: all 0.18s ease;
-  }
-  .task.done .box{
-    background: var(--teal);
-    border-color: var(--teal);
-  }
+  .box{ width:24px;height:24px; border-radius:7px; border:2px solid rgba(15,42,36,0.22); background: #fff; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; transition: all 0.18s ease; }
+  .box svg{ width:13px;height:13px; opacity:0; transform: scale(0.5); transition: all 0.18s ease; }
+  .task.done .box{ background: var(--teal); border-color: var(--teal); }
   .task.done .box svg{ opacity:1; transform:scale(1); }
 
-  .task-text{ flex:1; padding-top:2px; }
-  .task-name-th{
-    font-family:'Noto Sans Thai','Inter',sans-serif;
-    font-size:16.5px;
-    font-weight:700;
-    color: var(--teal-dark);
-    line-height:1.4;
-    transition: color 0.18s ease;
-    margin-bottom:2px;
-  }
-  .task-name{
-    font-size:13px;
-    font-weight:500;
-    color: rgba(15,42,36,0.55);
-    line-height:1.35;
-    transition: color 0.18s ease;
-  }
-  .task.done .task-name-th{
-    color: rgba(15,42,36,0.35);
-    text-decoration: line-through;
-    text-decoration-color: rgba(15,42,36,0.22);
-  }
-  .task.done .task-name{
-    color: rgba(15,42,36,0.32);
-    text-decoration: line-through;
-    text-decoration-color: rgba(15,42,36,0.2);
-  }
-  .task-tag{
-    display:inline-block;
-    font-size:10.5px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color: var(--teal-dark);
-    background: rgba(30,166,114,0.14);
-    padding: 2px 7px;
-    border-radius: 5px;
-    margin-top:5px;
-  }
-  .task-tag.weekly{
-    color:#A8461C;
-    background: rgba(240,169,62,0.18);
-  }
+  .task-text{ flex:1; padding-top:1px; }
+  .task-name-th{ font-family:'Noto Sans Thai','Inter',sans-serif; font-size:15.5px; font-weight:700; color: var(--teal-dark); line-height:1.4; transition: color 0.18s ease; margin-bottom:2px; }
+  .task-name{ font-size:12.5px; font-weight:500; color: rgba(15,42,36,0.55); line-height:1.35; transition: color 0.18s ease; }
+  .task.done .task-name-th{ color: rgba(15,42,36,0.35); text-decoration: line-through; text-decoration-color: rgba(15,42,36,0.22); }
+  .task.done .task-name{ color: rgba(15,42,36,0.32); text-decoration: line-through; text-decoration-color: rgba(15,42,36,0.2); }
 
-  .submit-wrap{
-    padding: 18px 4px 4px 4px;
-  }
-  .submit-btn{
-    width:100%;
-    border:none;
-    border-radius: 12px;
-    padding: 15px;
-    font-family:'Inter',sans-serif;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    background: var(--ink);
-    color: var(--sand);
-    transition: transform 0.12s ease, opacity 0.2s ease;
-  }
-  .submit-btn:disabled{
-    opacity:0.35;
-    cursor:not-allowed;
-  }
+  .submit-wrap{ padding: 18px 4px 4px 4px; }
+  .submit-btn{ width:100%; border:none; border-radius: 12px; padding: 15px; font-family:'Inter',sans-serif; font-size:15px; font-weight:600; cursor:pointer; background: var(--ink); color: var(--sand); transition: transform 0.12s ease, opacity 0.2s ease; }
+  .submit-btn:disabled{ opacity:0.35; cursor:not-allowed; }
   .submit-btn:not(:disabled):active{ transform: scale(0.98); }
-  .submit-hint{
-    text-align:center;
-    font-size:12px;
-    color: rgba(15,42,36,0.4);
-    margin-top:10px;
-  }
+  .submit-hint{ text-align:center; font-size:12px; color: rgba(15,42,36,0.4); margin-top:10px; }
 
-  .footer-note{
-    text-align:center;
-    font-size:12px;
-    color: rgba(15,42,36,0.4);
-    padding: 10px 20px 4px 20px;
-  }
+  .footer-note{ text-align:center; font-size:12px; color: rgba(15,42,36,0.4); padding: 10px 20px 4px 20px; }
 
-  /* Well done screen */
-  .celebrate{
-    display:none;
-    text-align:center;
-    padding: 50px 20px 10px 20px;
-  }
+  .celebrate{ display:none; text-align:center; padding: 50px 20px 10px 20px; }
   .celebrate.show{ display:block; }
-  .celebrate .mark{
-    width:64px;height:64px;
-    border-radius:50%;
-    background: linear-gradient(135deg, var(--teal), var(--gold));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin: 0 auto 18px auto;
-  }
+  .celebrate .mark{ width:64px;height:64px; border-radius:50%; background: linear-gradient(135deg, var(--teal), var(--gold)); display:flex; align-items:center; justify-content:center; margin: 0 auto 18px auto; }
   .celebrate .mark svg{ width:30px;height:30px; }
-  .celebrate .big{
-    font-family:'Fraunces', serif;
-    font-size:21px;
-    color: var(--ink);
-    margin-bottom:6px;
-  }
-  .celebrate .small{
-    font-size:13.5px;
-    color: rgba(15,42,36,0.5);
-    line-height:1.5;
-    max-width:280px;
-    margin: 0 auto;
-  }
-  .back-btn{
-    margin: 26px auto 0 auto;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    justify-content:center;
-    background:none;
-    border:1px solid rgba(15,42,36,0.18);
-    border-radius: 10px;
-    padding: 11px 18px;
-    font-family:'Inter',sans-serif;
-    font-size:13.5px;
-    font-weight:600;
-    color: var(--ink);
-    cursor:pointer;
-  }
+  .celebrate .big{ font-family:'Fraunces', serif; font-size:21px; color: var(--ink); margin-bottom:6px; }
+  .celebrate .small{ font-size:13.5px; color: rgba(15,42,36,0.5); line-height:1.5; max-width:280px; margin: 0 auto; }
+  .back-btn{ margin: 26px auto 0 auto; display:flex; align-items:center; gap:6px; justify-content:center; background:none; border:1px solid rgba(15,42,36,0.18); border-radius: 10px; padding: 11px 18px; font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600; color: var(--ink); cursor:pointer; }
   .back-btn svg{ width:14px;height:14px; }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; }
-  }
+  @media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
 </style>
 </head>
 <body>
 <div class="page" id="page">
-
-  <div class="header">
-    <div class="brandrow">
-      <img src="logo.png" alt="Pairadise Resort">
-      <div class="brandname">Pairadise Resort<span>Daily Ops Checklist</span></div>
-    </div>
-    <div class="eyebrow">
-      <span class="date-main" id="dateLabel">Monday, August 3</span>
-      <span id="timeContext">Morning</span>
-    </div>
-    <div class="profile">
-      <div class="avatar-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#FBF8F2" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
-      </div>
-      <div class="who">
-        <div class="greet" id="greetName">Hi, Nong</div>
-        <div class="title" id="titleLabel">General Manager (from August 3 - August 18)</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="punchcard">
-    <div class="punchcard-top">
-      <span class="punchcard-label">Today's progress</span>
-      <span class="punchcard-count"><strong id="doneCount">0</strong><span style="color:rgba(251,248,242,0.4)"> / </span><span id="totalCount">0</span></span>
-    </div>
-    <div class="ticks" id="ticks"></div>
-  </div>
-
-  <div class="punchcard" style="margin-top:12px;">
-    <div class="punchcard-top">
-      <span class="punchcard-label">Two-week progress</span>
-      <span class="punchcard-count"><strong id="periodDoneCount">0</strong><span style="color:rgba(251,248,242,0.4)"> / </span><span id="periodTotalCount">0</span> days</span>
-    </div>
-    <div class="ticks ticks-14" id="periodTicks"></div>
-    <div class="submit-hint" style="text-align:left;margin-top:8px;color:rgba(251,248,242,0.4);" id="periodRangeLabel">Aug 3 – Aug 18</div>
-  </div>
-
-  <div class="card">
-    <div id="taskListWrap">
-      <div class="section-title">Today's SOP Task checklist</div>
-      <div class="section-sub" id="sectionSub">Daily routine + Monday SOPs</div>
-      <div id="taskList"></div>
-
-      <div class="submit-wrap">
-        <button class="submit-btn" id="submitBtn" disabled>Submit today's checklist</button>
-        <div class="submit-hint" id="submitHint">Check off every task to submit</div>
-      </div>
-    </div>
-
-    <div class="celebrate" id="celebrate">
-      <div class="mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </div>
-      <div class="big">Well done, Nong</div>
-      <div class="small">Today's checklist has been submitted. See you tomorrow for a fresh list.</div>
-      <button class="back-btn" id="backBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to checklist
-      </button>
-    </div>
-
-    <div class="footer-note">Checks are saved automatically · resets each morning</div>
-  </div>
-
+  <div id="loadingScreen" class="status-screen">Loading today's checklist…</div>
 </div>
 
 <script>
-  // ---------------------------------------------------------------
-  // SAMPLE DATA — to be replaced by a fetch() to Google Sheets later
-  // ---------------------------------------------------------------
+  // ==============================================================
+  // CONFIG — set this to your deployed Apps Script /exec URL
+  // ==============================================================
+  const API_URL = "https://script.google.com/macros/s/AKfycbwYobgjIUd-O-y1Em5m_4O_rjFQEvTTqYSjH4gdlH_NOnfT0RufA5740zqGSaBpBnXF/exec";
 
   const params = new URLSearchParams(window.location.search);
-  const employeeId = params.get('id') || 'nong';
+  const employeeId = (params.get('id') || '').toLowerCase().trim();
 
-  const EMPLOYEES = {
-    nong: { name: "Nong", title: "General Manager", periodStart: "2026-08-03", periodEnd: "2026-08-18" },
-    james: { name: "James Okoro", title: "Front Desk Supervisor", periodStart: "2026-08-03", periodEnd: "2026-08-18" }
-  };
+  const pageEl = document.getElementById('page');
 
-  const DAILY_TASKS = [
-    { en: "Walk the lobby and check for cleanliness", th: "เดินตรวจล็อบบี้และความสะอาด" },
-    { en: "Confirm all staff have clocked in", th: "ยืนยันว่าพนักงานทุกคนลงเวลาเข้างานแล้ว" },
-    { en: "Review today's arrivals and VIP notes", th: "ตรวจสอบรายชื่อแขกเข้าพักวันนี้และบันทึก VIP" },
-    { en: "Check pool and garden area upkeep", th: "ตรวจสอบความเรียบร้อยของสระว่ายน้ำและสวน" },
-    { en: "Radio check with front desk and housekeeping", th: "ติดต่อวิทยุกับแผนกต้อนรับและแม่บ้าน" }
-  ];
-
-  const WEEKLY_TASKS = {
-    1: [
-      { en: "Submit weekly occupancy report", th: "ส่งรายงานอัตราการเข้าพักประจำสัปดาห์" },
-      { en: "Walk-through of maintenance backlog", th: "ตรวจสอบงานซ่อมบำรุงที่ค้างอยู่" }
-    ],
-    2: [],
-    3: [
-      { en: "Mid-week inventory spot check", th: "ตรวจนับสต๊อกสินค้ากลางสัปดาห์" }
-    ],
-    4: [],
-    5: [
-      { en: "Prep weekend staffing schedule", th: "เตรียมตารางพนักงานสำหรับวันหยุดสุดสัปดาห์" }
-    ],
-    6: [
-      { en: "Weekend readiness walk-through", th: "ตรวจความพร้อมสำหรับวันหยุดสุดสัปดาห์" }
-    ],
-    0: [
-      { en: "Review guest feedback from the week", th: "ทบทวนความคิดเห็นของแขกประจำสัปดาห์" }
-    ]
-  };
-
-  const employee = EMPLOYEES[employeeId] || EMPLOYEES.nong;
-  const today = new Date();
-  const dayIdx = today.getDay();
-  const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-  document.getElementById('dateLabel').textContent =
-    `${dayNames[dayIdx]}, ${monthNames[today.getMonth()]} ${today.getDate()}`;
-
-  const hour = today.getHours();
-  document.getElementById('timeContext').textContent =
-    hour < 12 ? "Morning" : hour < 17 ? "Afternoon" : "Evening";
-
-  document.getElementById('greetName').textContent = `Hi, ${employee.name.split(' ')[0]}`;
-
-  function fmtShort(dateStr){
-    const d = new Date(dateStr + 'T00:00:00');
-    return `${monthNames[d.getMonth()].slice(0,3)} ${d.getDate()}`;
-  }
-  document.getElementById('titleLabel').textContent =
-    `${employee.title} (from ${fmtShort(employee.periodStart)} - ${fmtShort(employee.periodEnd)})`;
-  document.getElementById('periodRangeLabel').textContent =
-    `${fmtShort(employee.periodStart)} – ${fmtShort(employee.periodEnd)}`;
-  document.querySelector('.celebrate .big').textContent = `Well done, ${employee.name.split(' ')[0]}`;
-
-  const weeklyForToday = WEEKLY_TASKS[dayIdx] || [];
-  document.getElementById('sectionSub').textContent =
-    weeklyForToday.length ? `Daily routine + ${dayNames[dayIdx]} SOPs` : `Daily routine`;
-
-  const allTasks = [
-    ...DAILY_TASKS.map((t, i) => ({ id: `d${i}`, en: t.en, th: t.th, type: 'daily' })),
-    ...weeklyForToday.map((t, i) => ({ id: `w${i}`, en: t.en, th: t.th, type: 'weekly' }))
-  ];
-
-  const dateKey = today.toISOString().slice(0,10);
-  const storageKey = `checklist_${employeeId}_${dateKey}`;
-  const submitKey = `submitted_${employeeId}_${dateKey}`;
-
-  function loadState(){
-    try { return JSON.parse(localStorage.getItem(storageKey)) || {}; }
-    catch(e){ return {}; }
-  }
-  function saveState(state){
-    localStorage.setItem(storageKey, JSON.stringify(state));
-    // TODO: POST to Google Apps Script endpoint here too
+  function showError(msg){
+    pageEl.innerHTML = `<div class="status-screen">⚠️ ${msg}</div>`;
   }
 
-  let state = loadState();
-  let submitted = localStorage.getItem(submitKey) === 'true';
-
-  const listEl = document.getElementById('taskList');
-  const ticksEl = document.getElementById('ticks');
-  const submitBtn = document.getElementById('submitBtn');
-  const submitHint = document.getElementById('submitHint');
-  const wrap = document.getElementById('taskListWrap');
-  const celebrate = document.getElementById('celebrate');
-
-  function showCelebrate(){
-    wrap.style.display = 'none';
-    celebrate.classList.add('show');
-  }
-  function showList(){
-    wrap.style.display = 'block';
-    celebrate.classList.remove('show');
+  if (!employeeId){
+    showError("No employee id in the link. Add ?id=yourid to the URL.");
+  } else {
+    loadPage();
   }
 
-  function render(){
-    listEl.innerHTML = '';
-    ticksEl.innerHTML = '';
+  async function loadPage(){
+    let data;
+    try{
+      const res = await fetch(`${API_URL}?id=${encodeURIComponent(employeeId)}`);
+      data = await res.json();
+    } catch(err){
+      showError("Could not reach the checklist server. Check your connection and try again.");
+      return;
+    }
+    if (data.error){
+      showError(data.error === "Employee not found" ? "This link isn't recognized. Check with your manager." : data.error);
+      return;
+    }
+    render(data);
+  }
 
-    allTasks.forEach(task => {
-      const done = !!state[task.id];
-      const row = document.createElement('div');
-      row.className = 'task' + (done ? ' done' : '');
-      row.innerHTML = `
-        <div class="box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </div>
-        <div class="task-text">
-          <div class="task-name-th">${task.th}</div>
-          <div class="task-name">${task.en}</div>
-          <span class="task-tag ${task.type === 'weekly' ? 'weekly' : ''}">${task.type === 'weekly' ? dayNames[dayIdx] + ' SOP' : 'Daily'}</span>
-        </div>
-      `;
-      row.addEventListener('click', () => {
-        state[task.id] = !state[task.id];
-        saveState(state);
-        render();
-      });
-      listEl.appendChild(row);
+  function render(data){
+    const employee = data.employee;
+    const tasks = data.tasks;
+    const checkedMap = data.checkedMap || {};
+    let submitted = !!data.submittedToday;
 
-      const tick = document.createElement('div');
-      tick.className = 'tick' + (done ? ' filled' : '');
-      ticksEl.appendChild(tick);
+    // local mutable state of checks, seeded from server
+    const state = {};
+    tasks.forEach(t => { state[t.id] = !!checkedMap[t.en]; });
+
+    const today = new Date();
+    const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const dayIdx = today.getDay();
+    const hour = today.getHours();
+    const timeContext = hour < 12 ? "Morning" : hour < 17 ? "Afternoon" : "Evening";
+
+    function fmtShort(dateStr){
+      if (!dateStr) return "";
+      const d = new Date(dateStr + 'T00:00:00');
+      return `${monthNames[d.getMonth()].slice(0,3)} ${d.getDate()}`;
+    }
+
+    // Group tasks by section, preserving order of first appearance
+    const sectionOrder = [];
+    const sectionMap = {};
+    tasks.forEach(t => {
+      const s = t.section || "Tasks";
+      if (!sectionMap[s]){ sectionMap[s] = []; sectionOrder.push(s); }
+      sectionMap[s].push(t);
     });
 
-    const doneCount = allTasks.filter(t => state[t.id]).length;
-    document.getElementById('doneCount').textContent = doneCount;
-    document.getElementById('totalCount').textContent = allTasks.length;
+    const avatarHtml = employee.photo
+      ? `<img src="${employee.photo}" alt="${employee.name}">`
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="#FBF8F2" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>`;
 
-    const allDone = allTasks.length > 0 && doneCount === allTasks.length;
-    submitBtn.disabled = !allDone;
-    submitHint.textContent = allDone ? "Ready to submit" : "Check off every task to submit";
+    const periodRange = (employee.periodStart && employee.periodEnd)
+      ? `${fmtShort(employee.periodStart)} – ${fmtShort(employee.periodEnd)}`
+      : "";
 
-    if (submitted){
-      showCelebrate();
-    } else {
-      showList();
+    pageEl.innerHTML = `
+      <div class="header">
+        <div class="brandrow">
+          <img src="logo.png" alt="Pairadise Resort">
+          <div class="brandname">Pairadise Resort<span>Daily Ops Checklist</span></div>
+        </div>
+        <div class="eyebrow">
+          <span class="date-main">${dayNames[dayIdx]}, ${monthNames[today.getMonth()]} ${today.getDate()}</span>
+          <span>${timeContext}</span>
+        </div>
+        <div class="profile">
+          <div class="avatar-placeholder">${avatarHtml}</div>
+          <div class="who">
+            <div class="greet">Hi, ${employee.name.split(' ')[0]}</div>
+            <div class="title">${employee.title}${periodRange ? ` (from ${fmtShort(employee.periodStart)} - ${fmtShort(employee.periodEnd)})` : ''}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="punchcard">
+        <div class="punchcard-top">
+          <span class="punchcard-label">Today's progress</span>
+          <span class="punchcard-count"><strong id="doneCount">0</strong><span style="color:rgba(251,248,242,0.4)"> / </span><span id="totalCount">${tasks.length}</span></span>
+        </div>
+        <div class="ticks" id="ticks"></div>
+      </div>
+
+      <div class="punchcard" style="margin-top:12px;">
+        <div class="punchcard-top">
+          <span class="punchcard-label">Two-week progress</span>
+          <span class="punchcard-count"><strong id="periodDoneCount">0</strong><span style="color:rgba(251,248,242,0.4)"> / </span><span id="periodTotalCount">0</span> days</span>
+        </div>
+        <div class="ticks ticks-14" id="periodTicks"></div>
+        <div class="submit-hint" style="text-align:left;margin-top:8px;color:rgba(251,248,242,0.4);">${periodRange}</div>
+      </div>
+
+      <div class="card">
+        <div id="taskListWrap">
+          <div class="section-title">Today's SOP Task checklist</div>
+          <div class="section-sub">Tap a section to expand · ${tasks.length} items today</div>
+          <div id="sectionsContainer"></div>
+
+          <div class="submit-wrap">
+            <button class="submit-btn" id="submitBtn" disabled>Submit today's checklist</button>
+            <div class="submit-hint" id="submitHint">Check off every task to submit</div>
+          </div>
+        </div>
+
+        <div class="celebrate" id="celebrate">
+          <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="big">Well done, ${employee.name.split(' ')[0]}</div>
+          <div class="small">Today's checklist has been submitted. See you tomorrow for a fresh list.</div>
+          <button class="back-btn" id="backBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to checklist
+          </button>
+        </div>
+
+        <div class="footer-note">Checks are saved automatically · resets each morning</div>
+      </div>
+    `;
+
+    const sectionsContainer = document.getElementById('sectionsContainer');
+    const ticksEl = document.getElementById('ticks');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitHint = document.getElementById('submitHint');
+    const wrap = document.getElementById('taskListWrap');
+    const celebrate = document.getElementById('celebrate');
+
+    function showCelebrate(){ wrap.style.display = 'none'; celebrate.classList.add('show'); }
+    function showList(){ wrap.style.display = 'block'; celebrate.classList.remove('show'); }
+
+    async function postUpdate(payload){
+      try{
+        await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+      } catch(err){ /* fail silently, local UI already updated */ }
     }
 
+    function renderSections(){
+      sectionsContainer.innerHTML = '';
+      ticksEl.innerHTML = '';
+
+      sectionOrder.forEach((sectionName, sIdx) => {
+        const items = sectionMap[sectionName];
+        const doneInSection = items.filter(t => state[t.id]).length;
+        const complete = doneInSection === items.length;
+
+        const secEl = document.createElement('div');
+        secEl.className = 'sop-section' + (sIdx === 0 ? ' open' : '');
+        secEl.innerHTML = `
+          <div class="sop-section-head">
+            <div class="sop-section-head-left">
+              <span class="sop-section-name">${sectionName}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="sop-section-count ${complete ? 'complete' : ''}">${doneInSection}/${items.length}</span>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="sop-section-body"></div>
+        `;
+        const head = secEl.querySelector('.sop-section-head');
+        head.addEventListener('click', () => secEl.classList.toggle('open'));
+
+        const body = secEl.querySelector('.sop-section-body');
+        items.forEach(task => {
+          const done = !!state[task.id];
+          const row = document.createElement('div');
+          row.className = 'task' + (done ? ' done' : '');
+          row.innerHTML = `
+            <div class="box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div class="task-text">
+              <div class="task-name-th">${task.th || ''}</div>
+              <div class="task-name">${task.en}</div>
+            </div>
+          `;
+          row.addEventListener('click', () => {
+            state[task.id] = !state[task.id];
+            postUpdate({ employeeId, taskEn: task.en, checked: state[task.id] });
+            renderSections();
+          });
+          body.appendChild(row);
+        });
+
+        sectionsContainer.appendChild(secEl);
+      });
+
+      // Daily tick strip (one tick per task, capped visually via flex-wrap)
+      tasks.forEach(t => {
+        const tick = document.createElement('div');
+        tick.className = 'tick' + (state[t.id] ? ' filled' : '');
+        ticksEl.appendChild(tick);
+      });
+
+      const doneCount = tasks.filter(t => state[t.id]).length;
+      document.getElementById('doneCount').textContent = doneCount;
+
+      const allDone = tasks.length > 0 && doneCount === tasks.length;
+      submitBtn.disabled = !allDone || submitted;
+      submitHint.textContent = submitted ? "Already submitted today" : (allDone ? "Ready to submit" : "Check off every task to submit");
+
+      if (submitted){ showCelebrate(); } else { showList(); }
+    }
+
+    function renderPeriodProgress(){
+      const periodTicksEl = document.getElementById('periodTicks');
+      periodTicksEl.innerHTML = '';
+      if (!employee.periodStart || !employee.periodEnd){
+        document.getElementById('periodDoneCount').textContent = 0;
+        document.getElementById('periodTotalCount').textContent = 0;
+        return;
+      }
+      const start = new Date(employee.periodStart + 'T00:00:00');
+      const end = new Date(employee.periodEnd + 'T00:00:00');
+      const submittedDates = data.submittedDates || {};
+      const todayKey = data.date;
+
+      let cursor = new Date(start);
+      let totalDays = 0, doneDays = 0;
+
+      while (cursor <= end){
+        const cKey = cursor.toISOString().slice(0,10);
+        totalDays++;
+        const wasSubmitted = !!submittedDates[cKey];
+        const isFuture = cKey > todayKey;
+
+        const tick = document.createElement('div');
+        if (wasSubmitted){ tick.className = 'tick filled'; doneDays++; }
+        else if (isFuture){ tick.className = 'tick future'; }
+        else { tick.className = 'tick'; }
+        periodTicksEl.appendChild(tick);
+
+        cursor.setDate(cursor.getDate() + 1);
+      }
+      document.getElementById('periodDoneCount').textContent = doneDays;
+      document.getElementById('periodTotalCount').textContent = totalDays;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+      if (submitBtn.disabled) return;
+      submitted = true;
+      await postUpdate({ employeeId, submittedFinal: true });
+      showCelebrate();
+      renderSections();
+    });
+
+    document.getElementById('backBtn').addEventListener('click', () => {
+      showList();
+    });
+
+    renderSections();
     renderPeriodProgress();
   }
-
-  function dateKeyFor(d){
-    return d.toISOString().slice(0,10);
-  }
-
-  function renderPeriodProgress(){
-    const start = new Date(employee.periodStart + 'T00:00:00');
-    const end = new Date(employee.periodEnd + 'T00:00:00');
-    const periodTicksEl = document.getElementById('periodTicks');
-    periodTicksEl.innerHTML = '';
-
-    let cursor = new Date(start);
-    let totalDays = 0;
-    let doneDays = 0;
-    const todayKey = dateKeyFor(today);
-
-    while (cursor <= end){
-      const cKey = dateKeyFor(cursor);
-      totalDays++;
-
-      const wasSubmitted = localStorage.getItem(`submitted_${employeeId}_${cKey}`) === 'true';
-      const isFuture = cKey > todayKey;
-
-      const tick = document.createElement('div');
-      if (wasSubmitted){
-        tick.className = 'tick filled';
-        doneDays++;
-      } else if (isFuture){
-        tick.className = 'tick future';
-      } else {
-        tick.className = 'tick';
-      }
-      periodTicksEl.appendChild(tick);
-
-      cursor.setDate(cursor.getDate() + 1);
-    }
-
-    document.getElementById('periodDoneCount').textContent = doneDays;
-    document.getElementById('periodTotalCount').textContent = totalDays;
-  }
-
-  submitBtn.addEventListener('click', () => {
-    if (submitBtn.disabled) return;
-    submitted = true;
-    localStorage.setItem(submitKey, 'true');
-    // TODO: POST final submission to Google Apps Script endpoint here
-    showCelebrate();
-  });
-
-  document.getElementById('backBtn').addEventListener('click', () => {
-    showList();
-  });
-
-  render();
 </script>
 </body>
 </html>
